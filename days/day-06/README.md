@@ -619,4 +619,19 @@ Create functions to create, update, delete, and find users in an array.
 
 ---
 
+## 15. Examples in Code (index.php)
+
+The accompanying `index.php` file demonstrates these concepts:
+
+1. **Basic Function** - Simple `sayHello()` function with no parameters
+2. **Function with Parameter** - `greet($name)` accepting a single argument
+3. **Multiple Parameters** - `introduce($name, $age)` with two parameters
+4. **Default Parameter** - `greetUser($name, $msg = "Hello")` with default value
+5. **Return Value** - `add($a, $b)` returning the sum
+6. **Pass by Reference** - `increment(&$value)` vs `incrementCopy($value)`
+7. **Nullable Types** - `findUser(?int $id): ?string` and union types
+8. **Arrow Functions** - Short syntax `fn($x) => $x * 2` and `array_map()` usage
+
+---
+
 **← Previous:** Day 05 - Arrays | **Next:** Day 07 - Built-in Functions →
