@@ -1,7 +1,9 @@
 # Day 07: Built-in PHP Functions & Include/Require
 
 ## Learning Objectives
+
 By the end of today, you will:
+
 - Master essential string manipulation functions
 - Work with mathematical functions
 - Handle dates and times effectively
@@ -15,6 +17,7 @@ By the end of today, you will:
 PHP provides powerful string manipulation functions.
 
 ### Length and Case
+
 ```php
 <?php
     $str = "Hello World";
@@ -31,6 +34,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Search and Position
+
 ```php
 <?php
     $str = "Hello World, Hello PHP";
@@ -48,6 +52,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Substring and Replace
+
 ```php
 <?php
     $str = "Hello World";
@@ -68,6 +73,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Trim and Padding
+
 ```php
 <?php
     $str = "   Hello World   ";
@@ -87,6 +93,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Split and Join
+
 ```php
 <?php
     // Split string into array
@@ -105,6 +112,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Formatting
+
 ```php
 <?php
     // Printf-style formatting
@@ -128,6 +136,7 @@ PHP provides powerful string manipulation functions.
 ## 2. Math Functions
 
 ### Basic Math
+
 ```php
 <?php
     // Absolute value
@@ -151,6 +160,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Random Numbers
+
 ```php
 <?php
     // Random integer
@@ -168,6 +178,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Mathematical Constants and Functions
+
 ```php
 <?php
     // Constants
@@ -194,6 +205,7 @@ PHP provides powerful string manipulation functions.
 ## 3. Date and Time Functions
 
 ### Current Date/Time
+
 ```php
 <?php
     // Current timestamp
@@ -208,6 +220,7 @@ PHP provides powerful string manipulation functions.
 ```
 
 ### Date Format Characters
+
 ```
 Y - 4-digit year (2024)
 y - 2-digit year (24)
@@ -230,6 +243,7 @@ A - AM/PM
 ```
 
 ### Working with Timestamps
+
 ```php
 <?php
     // Create timestamp from date
@@ -249,6 +263,7 @@ A - AM/PM
 ```
 
 ### Date Calculations
+
 ```php
 <?php
     // Days between dates
@@ -267,6 +282,7 @@ A - AM/PM
 ```
 
 ### DateTime Class
+
 ```php
 <?php
     // Create DateTime
@@ -298,6 +314,7 @@ A - AM/PM
 PHP allows you to include external files to organize and reuse code.
 
 ### Basic Include
+
 ```php
 <?php
     // include - continues if file not found (warning)
@@ -316,13 +333,14 @@ PHP allows you to include external files to organize and reuse code.
 
 ### Difference Between Include and Require
 
-| Feature | include | require |
-|---------|---------|---------|
-| File not found | Warning, continues | Fatal error, stops |
-| Use for | Optional files (sidebar, ads) | Essential files (config, DB) |
-| _once variant | include_once | require_once |
+| Feature        | include                       | require                      |
+| -------------- | ----------------------------- | ---------------------------- |
+| File not found | Warning, continues            | Fatal error, stops           |
+| Use for        | Optional files (sidebar, ads) | Essential files (config, DB) |
+| \_once variant | include_once                  | require_once                 |
 
 ### Practical Example: Project Structure
+
 ```
 project/
 ├── includes/
@@ -336,6 +354,7 @@ project/
 ```
 
 **config.php**
+
 ```php
 <?php
 define("SITE_NAME", "My Website");
@@ -348,6 +367,7 @@ $config = [
 ```
 
 **functions.php**
+
 ```php
 <?php
 function formatPrice($price) {
@@ -361,6 +381,7 @@ function sanitize($input) {
 ```
 
 **header.php**
+
 ```php
 <!DOCTYPE html>
 <html>
@@ -374,6 +395,7 @@ function sanitize($input) {
 ```
 
 **footer.php**
+
 ```php
     <footer>
         <p>&copy; <?php echo date("Y"); ?> <?php echo SITE_NAME; ?></p>
@@ -383,6 +405,7 @@ function sanitize($input) {
 ```
 
 **index.php**
+
 ```php
 <?php
 require_once "includes/config.php";
@@ -399,6 +422,7 @@ include "templates/header.php";
 ```
 
 ### Include with Return Values
+
 ```php
 <?php
 // prices.php
@@ -416,7 +440,8 @@ print_r($prices);  // Array with prices
 ?>
 ```
 
-### Using __DIR__ for Reliable Paths
+### Using **DIR** for Reliable Paths
+
 ```php
 <?php
 // Always use __DIR__ for includes
@@ -471,6 +496,7 @@ require_once __DIR__ . "/includes/functions.php";
 ## 6. Practical Examples
 
 ### Example 1: Text Formatter
+
 ```php
 <?php
 function formatTitle($title) {
@@ -500,6 +526,7 @@ echo truncate("This is a very long text", 10);  // This is a...
 ```
 
 ### Example 2: Date Utilities
+
 ```php
 <?php
 function formatDate($date, $format = "F j, Y") {
@@ -532,6 +559,7 @@ echo getAge("1990-05-15") . " years old";
 ```
 
 ### Example 3: Math Utilities
+
 ```php
 <?php
 function percentage($value, $total) {
@@ -595,21 +623,12 @@ echo formatBytes(1536000); // 1.46 MB
 
 ## 8. Key Takeaways
 
-| Category | Key Functions |
-|----------|--------------|
-| **String** | strlen, substr, strpos, str_replace, explode, implode, trim |
-| **Math** | abs, round, ceil, floor, rand, min, max, pow, sqrt |
-| **Date** | date, time, strtotime, mktime, DateTime class |
-| **Include** | include, require, include_once, require_once |
-
----
-
-## 9. Homework
-
-1. Create a "Text Statistics" function that counts words, sentences, paragraphs, and characters
-2. Build a "Date Calculator" with days between dates, add/subtract days, format dates
-3. Create a reusable header/footer include system for a website
-4. Build a "Password Generator" using math and string functions
+| Category    | Key Functions                                               |
+| ----------- | ----------------------------------------------------------- |
+| **String**  | strlen, substr, strpos, str_replace, explode, implode, trim |
+| **Math**    | abs, round, ceil, floor, rand, min, max, pow, sqrt          |
+| **Date**    | date, time, strtotime, mktime, DateTime class               |
+| **Include** | include, require, include_once, require_once                |
 
 ---
 

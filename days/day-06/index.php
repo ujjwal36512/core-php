@@ -1,8 +1,3 @@
-<?php
-/**
- * Day 06: PHP Functions
- */
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +39,7 @@ function sayHello() {
     echo "Hello, World!\n";
 }
 
+sayHello();
 sayHello();
 ?></pre>
 
@@ -95,14 +91,14 @@ echo "10 + 20 = " . add(10, 20);
 <!-- 6. Pass by Reference -->
 <h3>6. Pass by Reference</h3>
 <pre><?php
-function increment(&$value) {
-    $value++;
+function increment(&$def) {
+    $def++;
 }
 
-$num = 5;
-echo "Before: $num\n";
-increment($num);
-echo "After: $num\n";
+$abc = 5;
+echo "Before: $abc\n";
+increment($abc);
+echo "After: $abc\n";
 
 // Without reference (original unchanged)
 function incrementCopy($value) {
@@ -110,6 +106,7 @@ function incrementCopy($value) {
 }
 
 $num2 = 10;
+echo "Without reference: $num2\n"; // Still 10
 incrementCopy($num2);
 echo "Without reference: $num2\n"; // Still 10
 ?></pre>
@@ -124,8 +121,8 @@ function findUser(?int $id): ?string {
     return "User #$id";
 }
 
-echo findUser(1) . "\n";
-echo findUser(null) ?? "No user found";
+    echo findUser(1) . "\n";
+    echo findUser(null) ?? "No user found";
 echo "\n";
 
 // Union types (PHP 8+)
