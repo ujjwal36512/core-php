@@ -21,45 +21,43 @@ switch ($method) {
         $response = ['success' => true, 'data' => $user];
         break;
 
-       }
+    
+
+    // READ
+    case 'GET':
+        if ($id) {
+            $user = array_values(array_filter($users, fn($u) => $u['id'] === $id))[0] ?? null;
+            $response = $user ? ['success' => true, 'data' => $user] : ['success' => false, 'message' => 'Not found'];
+        } else {
+            $response = ['success' => true, 'data' => $users];
+        }
+        break;
+
+    // UPDATE
+    case 'PUT':
+        foreach ($users as &$user) {
+            if ($user['id'] === $id) {
+                $user['name'] = $input['name'] ?? $user['name'];
+                $user['email'] = $input['email'] ?? $user['email'];
+                file_put_contents($dataFile, json_encode($users));
+                $response = ['success' => true, 'data' => $user];
+                break 2;
+            }
+        }
+        $response = ['success' => false, 'message' => 'Not found'];
+        break;
+
+    // DELETE
+    case 'DELETE':
+        $count = count($users);
+        $users = array_values(array_filter($users, fn($u) => $u['id'] !== $id));
+        if (count($users) < $count) {
+            file_put_contents($dataFile, json_encode($users));
+            $response = ['success' => true, 'message' => 'Deleted'];
+        } else {
+            $response = ['success' => false, 'message' => 'Not found'];
+        }
+        break;
+}
 
 echo json_encode($response, JSON_PRETTY_PRINT);
-
-//     // READ
-//     case 'GET':
-//         if ($id) {
-//             $user = array_values(array_filter($users, fn($u) => $u['id'] === $id))[0] ?? null;
-//             $response = $user ? ['success' => true, 'data' => $user] : ['success' => false, 'message' => 'Not found'];
-//         } else {
-//             $response = ['success' => true, 'data' => $users];
-//         }
-//         break;
-
-//     // UPDATE
-//     case 'PUT':
-//         foreach ($users as &$user) {
-//             if ($user['id'] === $id) {
-//                 $user['name'] = $input['name'] ?? $user['name'];
-//                 $user['email'] = $input['email'] ?? $user['email'];
-//                 file_put_contents($dataFile, json_encode($users));
-//                 $response = ['success' => true, 'data' => $user];
-//                 break 2;
-//             }
-//         }
-//         $response = ['success' => false, 'message' => 'Not found'];
-//         break;
-
-//     // DELETE
-//     case 'DELETE':
-//         $count = count($users);
-//         $users = array_values(array_filter($users, fn($u) => $u['id'] !== $id));
-//         if (count($users) < $count) {
-//             file_put_contents($dataFile, json_encode($users));
-//             $response = ['success' => true, 'message' => 'Deleted'];
-//         } else {
-//             $response = ['success' => false, 'message' => 'Not found'];
-//         }
-//         break;
-// }
-
-// echo json_encode($response, JSON_PRETTY_PRINT);
