@@ -186,27 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 
-    <!-- Key Functions Reference -->
-    <div class="card">
-        <h2>Key Session Functions</h2>
-        <ul>
-            <li><code>session_start()</code> - Start or resume session</li>
-            <li><code>$_SESSION['key'] = value</code> - Store data</li>
-            <li><code>unset($_SESSION['key'])</code> - Remove one item</li>
-            <li><code>$_SESSION = []</code> - Clear all data</li>
-            <li><code>session_destroy()</code> - End session</li>
-            <li><code>session_id()</code> - Get session ID</li>
-        </ul>
-    </div>
 
-    <!--
-    KEY TAKEAWAYS:
-
-    1. session_start() MUST be called before any HTML output
-    2. $_SESSION is a superglobal array - use like any array
-    3. Data persists across page loads (until session ends)
-    4. Sessions are stored on the SERVER
-    5. Browser stores only the session ID (in a cookie)
-    -->
 </body>
 </html>

@@ -163,26 +163,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Upload File</button>
         </form>
     </div>
-
-    <div class="note">
-        <strong>Key Points:</strong>
-        <ul>
-            <li><code>enctype="multipart/form-data"</code> is required!</li>
-            <li>Access file data via <code>$_FILES['fieldname']</code></li>
-            <li>Always check <code>$_FILES['fieldname']['error']</code></li>
-            <li>Use <code>move_uploaded_file()</code> to save</li>
-        </ul>
-    </div>
-
-    <!--
-    KEY TAKEAWAYS:
-
-    1. Form must have: enctype="multipart/form-data"
-    2. Form must use: method="POST"
-    3. $_FILES contains: name, type, size, tmp_name, error
-    4. Always check error code before processing
-    5. Use move_uploaded_file() to save (validates it's a real upload)
-    6. Generate unique filenames to prevent overwrites
-    -->
 </body>
 </html>

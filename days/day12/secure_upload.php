@@ -1,14 +1,4 @@
 <?php
-/**
- * DAY 12 - Part 2: Secure File Upload with Validation
- * Time: 15 minutes
- *
- * Learning Goals:
- * - Validate file types properly (not trusting $_FILES['type'])
- * - Check file size limits
- * - Validate image dimensions
- * - Implement security best practices
- */
 
 // Configuration
 $uploadDir = __DIR__ . '/uploads/';
@@ -59,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // DON'T trust $_FILES['type'] - it can be faked!
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $detectedType = finfo_file($finfo, $file['tmp_name']);
-        finfo_close($finfo);
 
         if (!array_key_exists($detectedType, $allowedTypes)) {
             $errors[] = "Invalid file type: $detectedType. Allowed: JPG, PNG, GIF, WebP";

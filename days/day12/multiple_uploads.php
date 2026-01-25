@@ -1,14 +1,4 @@
 <?php
-/**
- * DAY 12 - Part 3: Multiple File Uploads
- * Time: 15 minutes
- *
- * Learning Goals:
- * - Handle multiple file uploads
- * - Restructure $_FILES array for easier processing
- * - Display gallery of uploaded images
- */
-
 $uploadDir = __DIR__ . '/uploads/';
 $maxFileSize = 2 * 1024 * 1024;
 $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
@@ -20,19 +10,8 @@ if (!is_dir($uploadDir)) {
 
 $results = [];
 
-// ============================================
-// PROCESS MULTIPLE UPLOADS
-// ============================================
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['images'])) {
-
-    /*
-     * $_FILES structure for multiple files is awkward:
-     * $_FILES['images']['name'][0], $_FILES['images']['name'][1], etc.
-     *
-     * We'll restructure it to:
-     * $files[0]['name'], $files[1]['name'], etc.
-     */
 
     // Restructure $_FILES array
     $files = [];
@@ -78,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['images'])) {
             // Check MIME type
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $mimeType = finfo_file($finfo, $file['tmp_name']);
-            finfo_close($finfo);
 
             if (!in_array($mimeType, $allowedTypes)) {
                 $result['status'] = 'error';
@@ -232,10 +210,7 @@ $galleryImages = glob($uploadDir . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
 
         <form method="POST" enctype="multipart/form-data">
             <label for="images">Select multiple images:</label>
-            <!--
-                KEY: name="images[]" with [] for arrays
-                KEY: multiple attribute allows selecting multiple files
-            -->
+         
             <input type="file"
                    name="images[]"
                    id="images"
@@ -302,17 +277,5 @@ $galleryImages = glob($uploadDir . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
             </div>
         <?php endif; ?>
     </div>
-
-    <!--
-    KEY TAKEAWAYS:
-
-    1. Use name="files[]" with [] for multiple files
-    2. Add "multiple" attribute to input
-    3. $_FILES structure is different - restructure for easier use:
-       - Original: $_FILES['images']['name'][0]
-       - Better: $files[0]['name']
-    4. Process each file in a loop
-    5. Track success/failure for each file separately
-    -->
 </body>
 </html>
